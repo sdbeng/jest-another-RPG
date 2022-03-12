@@ -20,6 +20,9 @@ test('creates a player obj', () => {
 
  test('gets player stats as an obj', () => { 
      const player = new Player('Dave')
-
+    // here we check that player.getStats() returns an obj with 4 specific properties
      expect(player.getStats()).toHaveProperty('potions')
+     expect(player.getStats()).toHaveProperty('health')
+     expect(player.getStats()).toHaveProperty('strength')
+     expect(player.getStats()).toHaveProperty('agility')
   })
