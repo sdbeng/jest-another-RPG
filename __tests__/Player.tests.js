@@ -39,5 +39,32 @@ test("gets inventory from player or returns false", () => {
 
 test("gets players health value", () => {
   const player = new Player("Dave");
-  expect(player.getHealth()).toEqual(expect.stringContaining(player.health.toString()))
+  expect(player.getHealth()).toEqual(
+    expect.stringContaining(player.health.toString())
+  );
 });
+
+test("check if player is alive or not", () => {
+  const player = new Player("Dave");
+  expect(player.isAlive()).toBeTruthy();
+  player.health = 0;
+  expect(player.isAlive()).toBeFalsy();
+});
+
+test("subtracts from player's health", () => {
+  const player = new Player("Dave");
+  const oldHealth = player.health;
+
+  player.reduceHealth(5);
+
+  expect(player.health).toBe(oldHealth - 5);
+// In this case, we will call the reduceHealth() method twice—the second time with an absurdly high value to make sure that it never goes negative.
+  player.reduceHealth(99999);
+
+  expect(player.health).toBe(0);
+});
+
+// ** Note
+/* Did you notice that we create a new Player instance in every test? We could choose to use the same one in all of our tests, but this might lead to unintended consequences. Now that our tests affect the Player object's property values, if we used the same object every time, we would no longer be testing properties and methods in isolation.
+
+The moral of the story is that it's important to create a new instance of the object we're testing in every test to give that test a fresh start. */
