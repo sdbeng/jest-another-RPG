@@ -17,3 +17,9 @@ test('creates a player obj', () => {
         expect.arrayContaining([expect.any(Object)])
     )
  })
+
+ test('gets player stats as an obj', () => { 
+     const player = new Player('Dave')
+
+     expect(player.getStats()).toHaveProperty('potions')
+  })
