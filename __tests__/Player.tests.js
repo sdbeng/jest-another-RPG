@@ -30,6 +30,7 @@ test('creates a player obj', () => {
   test('gets inventory from player or returns false', () => { 
     const player = new Player('Dave')
 
+    /* On player creation, the inventory should already have something in it, so a call to player.getInventory() should return an array. There's also the case of an empty inventory needing to return false. You can simulate an empty array yourself by setting player.inventory = [] before the next expect() runs.*/
     expect(player.getInventory()).toEqual(expect.any(Array))
     player.inventory = []
     //it will return false if inventory is empty
